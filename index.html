@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Chat</title>
+	<link src= "js/chat.css">
 	<link rel="stylesheet" href="">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -22,34 +23,33 @@
 		<section>
 			<div class= container>
 				<div class="well">
-					<div id= 'comentarios'></div>
+					<div id= 'comentarios' class="inline"></div>
+					<button onclick='Chat.borrar(event)' id= 'borrar' type="button" class="btn btn-default" "inline">Borrar</button>
 				</div>
 			</div>
 
 		</section>
 		<section>
 			<div class= container>
-				<div class="well">
-					<label for="titulo">Ingresa tu texto:</label>
-					<input id="titulo" type="text">
+				<div class="well" class ="abajo">
+					<label for="mensaje">Mensaje:</label>
+					<input id="mensaje" type="text">
+					<button onclick='Chat.enviar(event)' id= 'enviar' type="button" class="btn btn-default" "inline">Enviar</button>
 				</div>
-<!-- 				<div class="well">
-					<label for="desc">Descripcion</label>
-					<input id="desc" type="text">
-				</div> -->
 
-				<button onclick='Twit.aceptar(event)' id= 'aceptar' type="button" class="btn btn-default">Enviar</button>
-				<!-- <button onclick='Twit.cancelar(event)' id= 'cancelar' type="button" class="btn btn-default">Cancelar</button> -->
+
 				</div>
 			</div>
 
 			</div>
+
 		</section>
 
 	</main>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="js/Twit.js" typw="text/JavaScript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/chat.js" type="text/JavaScript"></script>
 	<!-- js/twit.js la nueva ruta -->
 </body>
 </html>

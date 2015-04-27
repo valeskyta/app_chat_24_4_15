@@ -1,67 +1,51 @@
-function Chat(titulo, desc){
-	this.titulo = titulo;
-	this.desc = desc;
+function Chat(mensaje){
+	this.mensaje = mensaje;
 }
-Chat.twits = [];
+Chat.enviados = [];
 
-Chat.aceptar = function(e){
+Chat.enviar = function(e){
 	e.preventDefault(e);
-//obtener titulo y dscripcion, y agregar sus valores a un arreglo
-	var titulo = document.getElementById('titulo').value;
-	var desc = document.getElementById('desc').value;
-	var twit = new Twit(titulo, desc);
+	var mensaje = document.getElementById('mensaje').value;
+	var enviados = new Chat(mensaje);
 
-	Chat.twits.push(twit);
-	Chat.cancelar(e);
+	Chat.enviados.push(enviados);
 	Chat.mostrar();
-	console.log(Chat.twits);
-	// document.write(Twit.twits);
-
-}
-
-Chat.cancelar = function(e){
-	e.preventDefault(); //previene el comportamiento por defecto del formulario que es enviarlo
-	var titulo = document.getElementById('titulo');
-	var desc = document.getElementById('desc');
-	titulo.value = '';
-	desc.value = '';
-
+	console.log(Chat.enviados);
 }
 
 Chat.mostrar =function(){
 	var comentarios = '';
-	Chat.twits.map(function(elemento, indice){
+	Chat.enviados.map(function(elemento, indice){
 		comentarios = comentarios + '<article>'
-					+'<h2>' + elemento.titulo + '</h2>'
-					+ '<p>' + elemento.desc + '</p>'
+					+'<h2>' + elemento.mensaje + '</h2>'
 					+ '</article>';
 	});
 	document.getElementById('comentarios').innerHTML = comentarios;
 }
-// clase viernes 24-4-15
 Chat.guardar = function(){
-	var Chat = Twit.twits;
-	var twitsEnCode = JSON.stringify(twits);
-	localStorage.setItem('twits', twitsEnCode);
+	var Chat = Chat.enviados;
+	var enviadosEnCode = JSON.stringify(enviados);
+	localStorage.setItem('enviados', enviadosEnCode);
 }
 
-Chat.obtenerTwits = function(){
-	var twitsEnCoded = localStorage.getItem('twits');
-	var twits = JSON.parse(twitsEnCoded);
-	Chat.twits = twits;
-	console.log(twitsEnCoded);
-	if(twitsEnCoded != null){
-		var twits =JSON.parse(twitsEnCoded);
-		Twit.twits = twits;
+Chat.obtenerChat = function(){
+	var enviadosEnCoded = localStorage.getItem('enviados');
+	var enviados = JSON.parse(enviadosEnCoded);
+	Chat.enviados = enviados;
+	console.log(enviadosEnCoded);
+	if(enviadosEnCoded != null){
+		var enviados =JSON.parse(enviadosEnCoded);
+		Chat.enviados = enviados;
 	}
 	else{
-		var twits = JSON.parse(twitsEnCoded);
-		Twit.twits = [];
+		var enviados = JSON.parse(enviadosEnCoded);
+		Chat.enviados = [];
 
 	}
 }
-Chat.obtenerTwits();
+Chat.obtenerChat();
 Chat.mostrar();
+
 
 
 //Twit.imprimir(); //este si funciona. Metodo clase
@@ -69,8 +53,8 @@ Chat.mostrar();
 // clases con mayusculas, instancias con minusculas
 
 // articulos son instancias
-// metodos aceptar y cancelar
-// aceptar va a generar nuevas instancias
+// metodos enviar y cancelar
+// enviar va a generar nuevas instancias
 // cancelar toma los input y cancelar los contenidos
 
 // onclick='Twit.cancelar()' tiene parentesis por que es un metodo
